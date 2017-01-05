@@ -80,21 +80,20 @@ bool GameSelect::LoadGameLists(std::string filePath)
 	for (int i = 0; i < 2; i++) {
 		ifs.open(filePath + std::to_string(i) + ".txt");
 		if (ifs.fail()) return false; //読み込み失敗
+
 		info.reserve(GameInfo::GetNumOfInfos());
 		while (std::getline(ifs, line)) {
-			if (line.front() != '#') { //#はコメント(更新で消えるけど)
-				info.clear();
-				std::stringstream ss(line);
-				std::string tmp;
-				while (std::getline(ss, tmp, '\t')) { //タブ区切りで読み込み
-					info.push_back(tmp);
-				}
-				//文字列配列をポイーして適当に処理させる
-				//オブジェクト指向なら1行まるごと送るのが理想
-				games[i].push_back(std::make_shared<GameInfo>(nameFont));
-				games[i].back()->Load(info);
-				gamePosOffsetX[i].push_back(0);
+			info.clear();
+			std::stringstream ss(line);
+			std::string tmp;
+			while (std::getline(ss, tmp, '\t')) { //タブ区切りで読み込み
+				info.push_back(tmp);
 			}
+			//文字列配列をポイーして適当に処理させる
+			//オブジェクト指向なら1行まるごと送るのが理想
+			games[i].push_back(std::make_shared<GameInfo>(nameFont));
+			games[i].back()->Load(info);
+			gamePosOffsetX[i].push_back(0);
 		}
 		ifs.close();
 	}

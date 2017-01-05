@@ -1,7 +1,0 @@
-1	小方	遊戯王GXOP１「快晴・上昇・…	serori比較.mp4	0	0	C:\Program Files\Windows Media Player\wmplayer.exe
-1	信江	小作品	小作品.mp4	0	0	C:\Program Files\Windows Media Player\wmplayer.exe
-2	猪木	No_Title	No_Title.mp4	0	0	C:\Program Files\Windows Media Player\wmplayer.exe
-2	安田	半魚人	半魚人long.avi	0	0	C:\Program Files\Windows Media Player\wmplayer.exe
-3	川畑	レアドロ☆KOI☆恋！	レアドロ☆KOI☆恋！.mp4	0	0	C:\Program Files\Windows Media Player\wmplayer.exe
-3	上田	なんぼーくん3Dモデル制作プ…	nanbow.mp4	0	0	C:\Program Files\Windows Media Player\wmplayer.exe
-3	大倉	零観でGO!	大倉作品.mp4	0	0	C:\Program Files\Windows Media Player\wmplayer.exe

@@ -13,7 +13,7 @@ public:
 
 	void SetGameInfo(std::shared_ptr<GameInfo> game);
 	void Draw();
-	bool Back();
+	bool Update();
 	void UpdateGameInfo();
 	void ExecuteGame();
 	bool GetIsPlay() { return isPlay; };
@@ -23,8 +23,11 @@ private:
 	std::shared_ptr<GameInfo> game;
 
 	std::unique_ptr<Button> start, back;
+	std::unique_ptr<Button> good, bad, voted, notPlay;
 	std::string currentDir;
 	bool isPlay;
+	bool isVoted;
+	int nextCanVoteRemaindTime;
 
 	int playTime;
 };

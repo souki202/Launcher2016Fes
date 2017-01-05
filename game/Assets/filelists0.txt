@@ -1,7 +1,2 @@
-1	’†Œ´	Sky[Rain]	game.exe	0	0	
-1	“í–{	Endurance	game.exe	0	0	
-2	Šâ’J	TypeMaster C++ ver.	game.exe	251919	5	
-2	Šâ’J_	Climb The Tower	game.exe	0	0	
-2	‰ÍŒ´—Ñ	Empty Sky	game.exe	0	0	
-2	˜a“c	–_’j‚Ì–`Œ¯	game.exe	0	0	
-3	’†¼	five balls	5balls_ver1.0.exe	0	0	
+2	asan	TypeMaster C++ ver.	game.exe	0	0	0	0	
+2	bsan	Climb The Tower	game.exe	0	0	0	0	

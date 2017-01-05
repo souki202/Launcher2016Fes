@@ -18,7 +18,7 @@ void GameInfo::Load(const std::vector<std::string>& info)
 	name = info[1];
 	title = info[2];
 	exeName = info[3];
-	thumbImg = LoadGraph((std::string("Assets/Images/") + std::to_string(grade) + "/" + name + "/" + "thumb.png").c_str());
+	//thumbImg = LoadGraph((std::string("Assets/Images/") + std::to_string(grade) + "/" + name + "/" + "thumb.png").c_str());
 	std::string folderPath = std::string("Assets/Images/") + std::to_string(grade) + "/" + name + "/";
 	
 	isMovie = false;
@@ -33,19 +33,20 @@ void GameInfo::Load(const std::vector<std::string>& info)
 				std::string s = p.filename().string();
 				//文字数が5未満は"info."が含まれていない
 				if (s.size() >= 5) {
-					if (s.substr(0, 5) == "info.") {
-						infoImg = LoadGraph((folderPath + s).c_str());
-						loaded = true;
+					if (s.substr(0, 5) == "info." || s.substr(0, 6) == "thumb.") {
+						(s.substr(0, 5) == "info." ? infoImg : thumbImg) = LoadGraph((folderPath + s).c_str());
 
 						//拡張子を調べる
-						std::string ext;
-						size_t extPos = s.find_last_of('.');
-						if (extPos != std::string::npos && s.back() != '.') {
-							ext = s.substr(extPos);
-							//動画なら動画フラグon
-							if (ext == "avi" || ext == "wmv" || ext == "mpg" || ext == "mpeg" || ext == "mp4"
-								|| ext == "mov" || ext == "asf") {
-								isMovie = true;
+						if (s.substr(0, 5) == "info.") {
+							std::string ext;
+							size_t extPos = s.find_last_of('.');
+							if (extPos != std::string::npos && s.back() != '.') {
+								ext = s.substr(extPos);
+								//動画なら動画フラグon
+								if (ext == "avi" || ext == "wmv" || ext == "mpg" || ext == "mpeg" || ext == "mp4"
+									|| ext == "mov" || ext == "asf") {
+									isMovie = true;
+								}
 							}
 						}
 					}
@@ -55,7 +56,9 @@ void GameInfo::Load(const std::vector<std::string>& info)
 	});
 	playTime = std::stoi(info[4]);
 	playCount = std::stoi(info[5]);
-	if (info.size() >= 7) player = info[6];
+	goodCount = std::stoi(info[6]);
+	badCount = std::stoi(info[7]);
+	if (info.size() >= NUM_OF_INFOS) player = info[NUM_OF_INFOS-1];
 	else player = "";
 
 	int titleWidth = GetDrawFormatStringWidthToHandle(font, title.c_str());
@@ -68,5 +71,6 @@ void GameInfo::Load(const std::vector<std::string>& info)
 void GameInfo::Save(std::ofstream & ofs)
 {
 	ofs << grade << "\t" << name << "\t" << title << "\t" << exeName << "\t"
-		<< playTime << "\t" << playCount << "\t" << player << std::endl;
+		<< playTime << "\t" << playCount << "\t" << goodCount << "\t" << badCount << "\t"
+		<< player << std::endl;
 }

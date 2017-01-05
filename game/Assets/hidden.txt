@@ -1,1 +1,1 @@
-2	HiddenGame	イライラ棒	game.exe	0	0	
+2	HiddenGame	イライラ棒	game.exe	0	0	0	0	

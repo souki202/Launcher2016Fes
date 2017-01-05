@@ -3,6 +3,8 @@
 GameIntroduction::GameIntroduction()
 {
 	mInput = std::make_shared<InputDevice::Mouse>();
+
+	//始めると戻るボタン
 	start = std::make_unique<Button>(mInput);
 	back = std::make_unique<Button>(mInput);
 	start->SetImage("Assets/Images/System/start.png");
@@ -10,12 +12,27 @@ GameIntroduction::GameIntroduction()
 	start->Transfar(CommonSettings::WINDOW_WIDTH - start->GetSize().first, CommonSettings::WINDOW_HEIGHT - start->GetSize().second);
 	back->Transfar(-1, CommonSettings::WINDOW_HEIGHT - back->GetSize().second);
 
+	//投票ボタン
+	good = std::make_unique<Button>(mInput);
+	bad = std::make_unique<Button>(mInput);
+	voted = std::make_unique<Button>(mInput);
+	notPlay = std::make_unique<Button>(mInput);
+	good->SetImage("Assets/Images/System/good.png");
+	bad->SetImage("Assets/Images/System/bad.png");
+	voted->SetImage("Assets/Images/System/voted.png");
+	notPlay->SetImage("Assets/Images/System/notPlay.png");
+	good->Transfar(CommonSettings::WINDOW_WIDTH - good->GetSize().first * 2, CommonSettings::WINDOW_HEIGHT - good->GetSize().second - start->GetSize().second);
+	bad->Transfar(CommonSettings::WINDOW_WIDTH - bad->GetSize().first, CommonSettings::WINDOW_HEIGHT - bad->GetSize().second - start->GetSize().second);
+	voted->Transfar(CommonSettings::WINDOW_WIDTH - voted->GetSize().first, CommonSettings::WINDOW_HEIGHT - voted->GetSize().second - start->GetSize().second);
+	notPlay->Transfar(CommonSettings::WINDOW_WIDTH - notPlay->GetSize().first, CommonSettings::WINDOW_HEIGHT - notPlay->GetSize().second - start->GetSize().second);
 
 	char current[256];
 	GetCurrentDirectory(255, current);
 	currentDir = current;
 	SetCurrentDirectory(currentDir.c_str());
 	isPlay = false;
+	isVoted = false;
+	nextCanVoteRemaindTime = 0;
 }
 
 GameIntroduction::~GameIntroduction()
@@ -27,6 +44,7 @@ void GameIntroduction::SetGameInfo(std::shared_ptr<GameInfo> game)
 	this->game = game;
 	mInput->Update(); //多重クリック回避
 	isPlay = false;
+	isVoted = false;
 	timer.Reset();
 	SeekMovieToGraph(game->GetInfoImage(), 0);
 	PlayMovieToGraph(game->GetInfoImage(), DX_PLAYTYPE_LOOP);
@@ -39,9 +57,13 @@ void GameIntroduction::Draw()
 
 	start->Draw();
 	back->Draw();
+	good->Draw();
+	bad->Draw();
+	if (isVoted) voted->Draw();
+	if (!isPlay) notPlay->Draw();
 }
 
-bool GameIntroduction::Back()
+bool GameIntroduction::Update()
 {
 	mInput->Update();
 	//右クリックでも選択画面へ戻る
@@ -53,6 +75,17 @@ bool GameIntroduction::Back()
 		ExecuteGame(); //ゲームプレイ
 	}
 
+	//投票
+	if (!isVoted && isPlay) {
+		if (good->OnClick()) {
+			isVoted = true;
+			game->AddGood();
+		}
+		if (bad->OnClick()) {
+			isVoted = true;
+			game->AddBad();
+		}
+	}
 	return false;
 }
 

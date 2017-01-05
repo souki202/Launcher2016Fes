@@ -43,7 +43,7 @@ bool Form::Update()
 		break;
 	case Form::Scene::INTRO:
 		intro.Draw();
-		if (intro.Back()) {
+		if (intro.Update()) {
 			//select.Shuffle();
 			if (intro.GetIsPlay()) select.ResetHiddenMode();
 			scene = Scene::SELECT;
