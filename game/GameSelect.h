@@ -34,6 +34,7 @@ public:
 	const bool& IsHiddenMode() { return hidden.isItMode; };
 	void ResetHiddenMode() { hidden.isItMode = false; hidden.time = hidden.INIT_TIME; };
 	bool UpdateInputBuffer();
+	void SaveGameInfo();
 private:
 	InputDevice::Keyboard kInput;
 	std::shared_ptr<InputDevice::Mouse> mInput;

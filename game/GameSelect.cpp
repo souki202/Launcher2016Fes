@@ -54,20 +54,7 @@ GameSelect::GameSelect()
 
 GameSelect::~GameSelect()
 {
-	//ƒQ[ƒ€î•ñ‚ğ•Û‘¶
-	std::ofstream ofs;
-	for (int i = 0; i < 2; i++) {
-		ofs.open(gamesInfoFilePath + std::to_string(i) + ".txt");
-		for (auto& x : games[i]) {
-			x->Save(ofs);
-		}
-		ofs.close();
-	}
-
-	//hidden
-	ofs.open("Assets/hidden.txt");
-	hiddenGame->Save(ofs);
-
+	SaveGameInfo();
 	RemoveFontResourceEx("Assets/Fonts/YuGothL.ttc", FR_PRIVATE, NULL);
 }
 
@@ -356,4 +343,21 @@ bool GameSelect::UpdateInputBuffer()
 	}
 
 	return false;
+}
+
+void GameSelect::SaveGameInfo()
+{
+	//ƒQ[ƒ€î•ñ‚ğ•Û‘¶
+	std::ofstream ofs;
+	for (int i = 0; i < 2; i++) {
+		ofs.open(gamesInfoFilePath + std::to_string(i) + ".txt");
+		for (auto& x : games[i]) {
+			x->Save(ofs);
+		}
+		ofs.close();
+	}
+
+	//hidden
+	ofs.open("Assets/hidden.txt");
+	hiddenGame->Save(ofs);
 }

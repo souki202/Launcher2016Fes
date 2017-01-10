@@ -71,7 +71,6 @@ bool GameIntroduction::Update()
 		return true;
 	}
 	if (start->OnClick()) {
-		isPlay = true;
 		ExecuteGame(); //ゲームプレイ
 	}
 
@@ -129,9 +128,12 @@ void GameIntroduction::ExecuteGame()
 		timer.Update();
 		WaitForSingleObject(pi.hProcess, INFINITE);
 		timer.Update();
-		//ゲームのプレイ回数と時間を更新
+		//ゲームのプレイ回数と時間を更新(5秒以上プレイのみ)
 		playTime = timer.GetDeltaTime();
-		UpdateGameInfo();
+		if (playTime >= 5000) {
+			isPlay = true;
+			UpdateGameInfo();
+		}
 		//ウィンドウを元に戻す
 		SetWindowMinimizeFlag(FALSE);
 		//元のフォルダに戻る

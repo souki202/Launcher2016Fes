@@ -1,1 +1,1 @@
-2	is	UE‚ÌSequencer	Movie.mp4	42717	1	1	0	C:\Program Files\Windows Media Player\wmplayer.exe
+2	is	UE‚ÌSequencer	Movie.mp4	106668	4	2	1	C:\Program Files\Windows Media Player\wmplayer.exe

@@ -46,6 +46,7 @@ bool Form::Update()
 		if (intro.Update()) {
 			//select.Shuffle();
 			if (intro.GetIsPlay()) select.ResetHiddenMode();
+			select.SaveGameInfo();
 			scene = Scene::SELECT;
 		}
 		break;
