@@ -21,10 +21,10 @@ GameIntroduction::GameIntroduction()
 	bad->SetImage("Assets/Images/System/bad.png");
 	voted->SetImage("Assets/Images/System/voted.png");
 	notPlay->SetImage("Assets/Images/System/notPlay.png");
-	good->Transfar(CommonSettings::WINDOW_WIDTH - good->GetSize().first * 2, CommonSettings::WINDOW_HEIGHT - good->GetSize().second - start->GetSize().second);
-	bad->Transfar(CommonSettings::WINDOW_WIDTH - bad->GetSize().first, CommonSettings::WINDOW_HEIGHT - bad->GetSize().second - start->GetSize().second);
-	voted->Transfar(CommonSettings::WINDOW_WIDTH - voted->GetSize().first, CommonSettings::WINDOW_HEIGHT - voted->GetSize().second - start->GetSize().second);
-	notPlay->Transfar(CommonSettings::WINDOW_WIDTH - notPlay->GetSize().first, CommonSettings::WINDOW_HEIGHT - notPlay->GetSize().second - start->GetSize().second);
+	good->Transfar(0, CommonSettings::WINDOW_HEIGHT - good->GetSize().second - start->GetSize().second);
+	bad->Transfar(good->GetSize().first + 1, CommonSettings::WINDOW_HEIGHT - bad->GetSize().second - start->GetSize().second);
+	voted->Transfar(0, CommonSettings::WINDOW_HEIGHT - voted->GetSize().second - start->GetSize().second);
+	notPlay->Transfar(0, CommonSettings::WINDOW_HEIGHT - notPlay->GetSize().second - start->GetSize().second);
 
 	char current[256];
 	GetCurrentDirectory(255, current);

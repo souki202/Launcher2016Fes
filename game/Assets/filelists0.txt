@@ -1,2 +1,2 @@
-2	asan	TypeMaster C++ ver.	game.exe	0	0	0	0	
-2	bsan	Climb The Tower	game.exe	0	0	0	0	
+2	asan	TypeMaster C++ ver.	game.exe	0	0	6	3	
+2	bsan	Climb The Tower	game.exe	0	0	0	1	
